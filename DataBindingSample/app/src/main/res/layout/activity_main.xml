@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="presenter"
+            type="com.example.sony.databindingsample.MPresenter"/>
+        <variable
+            name="handlers"
+            type="com.example.sony.databindingsample.MyHandler"/>
+        <variable
+            name="user1"
+            type="com.example.sony.databindingsample.data.model.User"/>
+        <variable
+            name="main"
+            type="com.example.sony.databindingsample.MainActivity"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user1.firstName}"/>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user1.lastName}"/>
+        <Button
+            android:onClick="@{handlers::onClickName}"
+            android:text="@{user1.firstName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:onClick="@{() -> presenter.onClick2(user1)}"
+            android:textColor="#FFF"
+            android:background="#123456"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv"
+            app:layoutManager="LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:setAdapter="@{main.adapter}">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</layout>
